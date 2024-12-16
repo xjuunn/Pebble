@@ -4,8 +4,8 @@
   "compilerOptions": {
     "types": ["@nuxt/types", "nuxt"],
     "paths": {
-      "stores/*": ["./stores/*"],
-      "models/*": ["./models/*"]
+      "stores/*": ["./stores/**/*"],
+      "models/*": ["./models/**/*"]
     }
   }
 }
