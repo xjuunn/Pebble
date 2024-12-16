@@ -4,6 +4,7 @@
 * Nuxt-Image
 * Nuxt-Content
 * Nuxt-Tailwind
+* Nuxt-Vueuse
 * Pinia-Nuxt
 * Nuxt-Device
 * Nuxt-Icon

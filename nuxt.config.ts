@@ -4,7 +4,11 @@ import Components from 'unplugin-vue-components/vite';
 export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: false,
-
+  imports:{
+    dirs:[
+      "models"
+    ]
+  },
   routeRules: {
     '/': { prerender: true }
   },
@@ -38,6 +42,8 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@hypernym/nuxt-anime',
     '@nuxt/icon',
-    'unplugin-icons/nuxt'
+    'unplugin-icons/nuxt',
+    '@vueuse/nuxt',
+    '@pinia/nuxt'
   ]
 });
