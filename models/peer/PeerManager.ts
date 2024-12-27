@@ -6,12 +6,12 @@ export class PeerManager {
     private constructor() {
     }
 
-    public static initialize(id: string): Promise | null {
-        if (PeerManager.peer) return;
+    public static initialize(id: string|null): Promise<null>| null {
+        if (PeerManager.peer) return null;
         return new Promise((resolve) => {
-            PeerManager.peer = new Peer(id);
+            PeerManager.peer = new Peer();
             PeerManager.peer.on("open", () => {
-                resolve();
+                resolve(null);
             })
         })
     }

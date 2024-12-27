@@ -7,6 +7,9 @@
   ],
   "permissions": [
     "core:default",
-    "core:window:allow-start-dragging"
+    "core:window:allow-start-dragging",
+    "core:window:allow-set-effects",
+    "core:app:allow-set-app-theme",
+    "core:window:allow-set-theme"
   ]
 }
