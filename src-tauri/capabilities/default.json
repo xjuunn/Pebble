@@ -10,6 +10,15 @@
     "core:window:allow-start-dragging",
     "core:window:allow-set-effects",
     "core:app:allow-set-app-theme",
-    "core:window:allow-set-theme"
+    "core:window:allow-set-theme",
+    "deep-link:allow-register",
+    "deep-link:allow-get-current",
+    "deep-link:allow-is-registered",
+    "deep-link:allow-unregister",
+    "notification:default",
+    "notification:allow-notify",
+    "notification:allow-show",
+    "fs:default",
+    "websocket:default"
   ]
 }

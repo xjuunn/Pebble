@@ -6,6 +6,10 @@
 
 <script lang="ts" setup>
 
+
+onMounted( async()=>{
+  
+})
 </script>
 <style>
 body,
