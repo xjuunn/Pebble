@@ -3,7 +3,7 @@
         <div class="w-full h-10 flex items-center justify-center" data-tauri-drag-region>
             <div class="icon w-6 h-6 mt-3" data-tauri-drag-region></div>
         </div>
-        <ul class="menu menu-xs mt-1 rounded-box flex-1 gap-2 opacity-60" data-tauri-drag-region>
+        <ul class="menu menu-lg mt-1 rounded-box flex-1 gap-2 opacity-60" data-tauri-drag-region>
             <li>
                 <a>
                     <Icon class="w-5 h-5" name="ri:message-3-fill"></Icon>

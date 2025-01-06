@@ -1,6 +1,7 @@
 import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import Components from 'unplugin-vue-components/vite';
+import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: false,
@@ -12,7 +13,6 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true }
   },
-
   devServer: { host: process.env.TAURI_DEV_HOST || 'localhost' },
   vite: {
     clearScreen: false,
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
       strictPort: true,
     },
     plugins: [
+      tailwindcss(),
       Components({
         resolvers: [
           IconsResolver({
@@ -33,12 +34,12 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  css: ["~/assets/app.css"],
   compatibilityDate: '2024-11-17',
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/content',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
     '@hypernym/nuxt-anime',
     '@nuxt/icon',

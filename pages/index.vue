@@ -3,15 +3,15 @@
     <div class="userlist">
       <MainWindowUserList></MainWindowUserList>
     </div>
-    <div class=" flex-1">
-      
+    <div class="flex-1">
+      <MainWindowUserChat></MainWindowUserChat>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout:'main-window'
+  layout: 'main-window'
 })
 
 </script>

@@ -3,11 +3,11 @@
         <div class="flex-1" data-tauri-drag-region>
             <span class="text-sm">私信</span>
         </div>
-        <label class="input input-sm input-bordered focus:outline-none flex items-center gap-2 bg-transparent">
+        <label class="input input-no-outline focus:border-0 input-sm w-60 input-bordered flex items-center gap-2 bg-transparent">
             <input type="text" class="grow" placeholder="搜索" />
             <Icon name="famicons:search-sharp"></Icon>
         </label>
-        <ul class="menu menu-horizontal menu-xs rounded-box" data-tauri-drag-region>
+        <ul class="menu menu-horizontal menu-md rounded-box" data-tauri-drag-region>
             <li>
                 <a>
                     <Icon class="w-4 h-4 opacity-50" name="mingcute:sun-line"></Icon>
@@ -30,7 +30,7 @@
             </li>
 
         </ul>
-        <div class="ml-5 flex gap-1 items-center">
+        <div class="ml-5 flex gap-3 items-center">
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-5" name="iconamoon:sign-minus"></Icon>
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-4" name="iconamoon:player-stop-light"></Icon>
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-5" name="iconamoon:close-fill"></Icon>
