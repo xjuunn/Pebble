@@ -17,3 +17,13 @@ onMounted(()=>{
   })
 })
 </script>
+<style>
+body,
+html {
+  background-color: transparent !important;
+}
+
+.glass {
+  background-image: none;
+} 
+</style>

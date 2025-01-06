@@ -1,23 +1,23 @@
 <template>
-  <div class="w-full h-screen flex items-center justify-center gap-2" data-tauri-drag-region>
-
+  <div class="w-full h-full flex">
+    <div class="userlist">
+      <MainWindowUserList></MainWindowUserList>
+    </div>
+    <div class=" flex-1">
+      
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
-
-onMounted( async()=>{
-  
+definePageMeta({
+  layout:'main-window'
 })
-</script>
-<style>
-body,
-html {
-  background-color: transparent !important;
-}
 
-.glass {
-  background-image: none;
+</script>
+<style lang="css" scoped>
+.userlist {
+  border-right: 1px solid #77777720;
+  width: 250px;
 }
 </style>

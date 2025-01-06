@@ -44,6 +44,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     'unplugin-icons/nuxt',
     '@vueuse/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
   ]
 });
