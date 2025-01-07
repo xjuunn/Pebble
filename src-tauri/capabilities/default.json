@@ -7,6 +7,12 @@
   ],
   "permissions": [
     "core:default",
+    "core:window:allow-close",
+    "core:window:allow-minimize",
+    "core:window:allow-set-minimizable",
+    "core:window:allow-maximize",
+    "core:window:allow-set-maximizable",
+    "core:window:allow-set-always-on-top",
     "core:window:allow-start-dragging",
     "core:window:allow-set-effects",
     "core:app:allow-set-app-theme",
