@@ -25,6 +25,7 @@
     "notification:allow-notify",
     "notification:allow-show",
     "fs:default",
-    "websocket:default"
+    "websocket:default",
+    "os:default"
   ]
 }

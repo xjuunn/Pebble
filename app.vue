@@ -8,13 +8,15 @@
 <script setup lang="ts">
 import { webviewWindow } from '@tauri-apps/api'
 import { Effect, EffectState } from "@tauri-apps/api/window";
-
+const { isWindow } = useClientEnv();
 onMounted(() => {
-  webviewWindow.getCurrentWebviewWindow().setEffects({
-    effects: [Effect.Mica],
-    color: "#000",
-    state: EffectState.Active
-  })
+  if (isWindow()) {
+    webviewWindow.getCurrentWebviewWindow().setEffects({
+      effects: [Effect.Mica],
+      color: "#000",
+      state: EffectState.Active
+    })
+  }
 })
 </script>
 <style>

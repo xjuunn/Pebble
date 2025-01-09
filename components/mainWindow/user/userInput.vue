@@ -12,7 +12,10 @@
     </div>
 </template>
 <script lang="ts" setup>
+let { init, isTauri } = useClientEnv();
+onMounted(() => {
 
+})
 </script>
 <style lang="css" scoped>
 .user-input {
