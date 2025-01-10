@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-fit flex items-center justify-center">
+    <div class="w-full h-fit p-2 flex items-center justify-center">
         <button class="btn bg-transparent m-1 btn-circle">
             <Icon class="scale-150" name="lucide:plus"></Icon>
         </button>
@@ -12,10 +12,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-let { init, isTauri } = useClientEnv();
-onMounted(() => {
 
-})
 </script>
 <style lang="css" scoped>
 .user-input {

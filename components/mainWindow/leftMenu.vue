@@ -1,7 +1,8 @@
 <template>
     <div class="leftMenu flex flex-col" data-tauri-drag-region>
         <div class="w-full h-10 flex items-center justify-center" data-tauri-drag-region>
-            <div class="icon w-6 h-6 mt-3" data-tauri-drag-region></div>
+            <div v-show="isDark" class="icon-light w-6 h-6 mt-3" data-tauri-drag-region></div>
+            <div v-show="!isDark" class="icon-dark w-6 h-6 mt-3" data-tauri-drag-region></div>
         </div>
         <ul class="menu menu-lg mt-1 rounded-box flex-1 gap-2 opacity-60" data-tauri-drag-region>
             <li>
@@ -38,16 +39,22 @@
     </div>
 </template>
 <script lang="ts" setup>
-
+const { isDark } = useThemeStore();
 </script>
 <style lang="css" scoped>
 .leftMenu {
     border-right: 1px solid #77777720;
 }
 
-.leftMenu .icon {
+.leftMenu .icon-light {
     background: url("../../public/favicon-light.png");
     background-size: cover;
-    opacity: .1;
+    opacity: .2;
+}
+
+.leftMenu .icon-dark {
+    background: url("../../public/favicon.png");
+    background-size: cover;
+    opacity: .2;
 }
 </style>

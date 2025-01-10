@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="select-none">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -10,6 +10,10 @@ import { webviewWindow } from '@tauri-apps/api'
 import { Effect, EffectState } from "@tauri-apps/api/window";
 const { isWindow } = useClientEnv();
 onMounted(() => {
+  document.getElementsByTagName('html')[0].addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  })
+
   if (isWindow()) {
     webviewWindow.getCurrentWebviewWindow().setEffects({
       effects: [Effect.Mica],

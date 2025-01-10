@@ -9,6 +9,11 @@
             <Icon class="opacity-50" name="famicons:search-sharp"></Icon>
         </label>
         <ul class="menu menu-horizontal menu-md rounded-box" data-tauri-drag-region>
+            <li class="inline sm:hidden">
+                <a>
+                    <Icon class="w-4 h-4 opacity-50" name="famicons:search-sharp"></Icon>
+                </a>
+            </li>
             <li>
                 <a @click="toggleTheme">
                     <Icon class="w-4 h-4 opacity-50" :name="`mingcute:${isDark ? 'sun' : 'moon'}-line`"></Icon>
@@ -30,42 +35,26 @@
                         name="majesticons:pin-line"></Icon>
                 </a>
             </li>
-
         </ul>
         <div class="ml-5 flex gap-3 items-center" v-show="isWindow()">
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-5" name="iconamoon:sign-minus"
-                @click="minimize"></Icon>
+                @click="() => webviewWindow.getCurrentWebviewWindow().minimize()"></Icon>
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-4" name="iconamoon:player-stop-light"
-                @click="maximize"></Icon>
+                @click="() => webviewWindow.getCurrentWebviewWindow().maximize()"></Icon>
             <Icon class="cursor-pointer opacity-50 hover:opacity-100 w-5 h-5" name="iconamoon:close-fill"
-                @click="close"></Icon>
+                @click="() => webviewWindow.getCurrentWebviewWindow().close()"></Icon>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
 import { webviewWindow } from '@tauri-apps/api'
 const { isWindow, isTauri } = useClientEnv();
-function minimize() {
-    webviewWindow.getCurrentWebviewWindow().minimize();
-}
-function maximize() {
-    webviewWindow.getCurrentWebviewWindow().maximize();
-}
-function close() {
-    webviewWindow.getCurrentWebviewWindow().close();
-}
-let isDark = ref(true)
-function toggleTheme() {
-    if (isTauri()) webviewWindow.getCurrentWebviewWindow().setTheme(isDark.value ? 'light' : 'dark');
-    else {
-        let html = document.getElementsByTagName('html')[0];
-        html.setAttribute('data-theme', isDark.value ? 'light' : 'dark');
-
-    }
-    isDark.value = !isDark.value;
-}
-
+const { isDark, onThemeChange, toggleTheme } = useThemeStore();
 let isAlwaysOnTop = ref(false);
+onThemeChange((b) => {
+    if (isTauri()) webviewWindow.getCurrentWebviewWindow().setTheme(b ? 'dark' : 'light');
+    else document.getElementsByTagName('html')[0].setAttribute('data-theme', b ? 'dark' : 'light');
+})
 async function pin() {
     await webviewWindow.getCurrentWebviewWindow().setAlwaysOnTop(!isAlwaysOnTop.value);
     isAlwaysOnTop.value = !isAlwaysOnTop.value;

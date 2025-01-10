@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex">
+  <div class="w-full h-full flex overflow-y-auto">
     <div class="userlist">
       <MainWindowUserList></MainWindowUserList>
     </div>

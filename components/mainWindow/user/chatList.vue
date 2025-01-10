@@ -1,5 +1,5 @@
 <template>
-    <div class="pl-5 pe-5 h-full w-full overflow-auto pb-24 chatlist">
+    <div class="pl-5 pe-5 h-full w-full overflow-y-auto pb-24 chatlist">
         <div class="chat chat-start" v-for="item in 20">
             <div class="chat-image avatar">
                 <div class="w-10 rounded-full">

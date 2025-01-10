@@ -1,7 +1,13 @@
 <template>
-    <div class="flex w-full pb-12 h-full flex-col">
-        <MainWindowUserChatList></MainWindowUserChatList>
-        <MainWindowUserInput></MainWindowUserInput>
+    <div class="flex w-full h-full flex-col">
+        <div class="flex-1 overflow-y-auto">
+            <div class="h-full">
+                <MainWindowUserChatList></MainWindowUserChatList>
+            </div>
+        </div>
+        <div class="">
+            <MainWindowUserInput></MainWindowUserInput>
+        </div>
     </div>
 
 
