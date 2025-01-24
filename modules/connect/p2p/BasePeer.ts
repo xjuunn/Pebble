@@ -15,6 +15,7 @@ export default class BasePeer {
             else if (id) BasePeer.peer = new Peer(id);
             else BasePeer.peer = new Peer();
             BasePeer.peer.on("error", (error) => { throw error });
+            ConnectManager.getInstance();
         }
         return BasePeer.peer;
     }

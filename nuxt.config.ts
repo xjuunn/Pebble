@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   ssr: false,
   imports:{
     dirs:[
-      "models/**/*","stores/**/*"
+      "models/**/*","stores/**/*","modules/**/*"
     ]
   },
   routeRules: {
