@@ -1,14 +1,16 @@
 import Peer, { DataConnection, MediaConnection, StreamConnection } from 'peerjs';
-export class ConnectManager {
-    private static connectManager: ConnectManager | null = null;
+import P2PMessageHandler from './P2PMessageHandler';
+
+export class P2PConnectManager {
+    private static connectManager: P2PConnectManager | null = null;
     private static connList: Map<string, string[]> = new Map();
     private constructor() { }
     public static getInstance() {
-        if (ConnectManager.connectManager === null) {
-            ConnectManager.connectManager = new ConnectManager();
-            ConnectManager.connectManager.init();
+        if (P2PConnectManager.connectManager === null) {
+            P2PConnectManager.connectManager = new P2PConnectManager();
+            P2PConnectManager.connectManager.init();
         }
-        return ConnectManager.connectManager;
+        return P2PConnectManager.connectManager;
     }
     /**
      * 连接到目标peer
@@ -27,7 +29,7 @@ export class ConnectManager {
      * @param callback 回调函数
      */
     public listPeer(callback: (peer_id: string) => void) {
-        ConnectManager.connList.forEach((_, key) => {
+        P2PConnectManager.connList.forEach((_, key) => {
             callback(key);
         })
     }
@@ -41,6 +43,9 @@ export class ConnectManager {
             console.log("连接关闭");
             this.delConnect(conn.peer, conn.connectionId)
         })
+        conn.on('data',(data)=>{
+            P2PMessageHandler.handler(data);
+        })
     }
 
     /**
@@ -49,12 +54,12 @@ export class ConnectManager {
      * @param conn_id Connid
      */
     public addConnect(peer_id: string, conn_id: string) {
-        if (!ConnectManager.connList.get(peer_id)) {
-            ConnectManager.connList.set(peer_id, []);
+        if (!P2PConnectManager.connList.get(peer_id)) {
+            P2PConnectManager.connList.set(peer_id, []);
         }
-        let conns = ConnectManager.connList.get(peer_id);
+        let conns = P2PConnectManager.connList.get(peer_id);
         conns?.push(conn_id);
-        console.log(ConnectManager.connList);
+        console.log(P2PConnectManager.connList);
     }
 
     /**
@@ -63,10 +68,10 @@ export class ConnectManager {
      * @param conn_id Connid
      */
     public delConnect(peer_id: string, conn_id: string) {
-        let conns = ConnectManager.connList.get(peer_id);
-        ConnectManager.connList.set(peer_id, conns?.filter(item => item !== conn_id) || [])
-        if (ConnectManager.connList.get(peer_id)?.length == 0) {
-            ConnectManager.connList.delete(peer_id);
+        let conns = P2PConnectManager.connList.get(peer_id);
+        P2PConnectManager.connList.set(peer_id, conns?.filter(item => item !== conn_id) || [])
+        if (P2PConnectManager.connList.get(peer_id)?.length == 0) {
+            P2PConnectManager.connList.delete(peer_id);
         }
     }
 
@@ -125,7 +130,7 @@ export class ConnectManager {
      * @param peer_id peerid
      */
     public getConnectIds(peer_id: string): string[] | undefined {
-        return ConnectManager.connList.get(peer_id);
+        return P2PConnectManager.connList.get(peer_id);
     }
 
     /**
