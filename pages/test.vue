@@ -1,36 +1,32 @@
 <template>
   <div>
-    <input placeholder="peerid" v-model="inputtext" type="text" class="input input-primary"> <br><br>
-    <input placeholder="消息" v-model="sendtext" type="text" class="input input-primary"> <br><br>
-
+    <input v-model="targetid" placeholder="连接对象" class="input input-primary" /> <br>
     <button class="btn btn-primary" @click="connect">连接</button>
-    <button class="btn btn-primary" @click="send">发送消息</button>
+    <button class="btn btn-primary" @click="find">查找</button>
   </div>
 </template>
 
 <script lang="ts" setup>
-
+import BasePeerClient from '../modules/connect/p2p/BasePeerClient';
+import BasePeerConnectManager from '../modules/connect/p2p/BasePeerConnectManager';
 definePageMeta({
   layout: 'main-window'
 })
-let inputtext = ref('');
-let sendtext = ref('');
-
-let peer = BasePeer.getInstance();
-peer.on('open', (id) => {
-  console.log(id);
-})
-peer.on('error', (error) => {
-  console.log("错误：", error);
+let peer: BasePeerClient;
+let connectManager: BasePeerConnectManager;
+let targetid = ref('');
+onMounted(() => {
+  peer = new BasePeerClient();
+  connectManager = new BasePeerConnectManager(peer);
 })
 
-const connManager = P2PConnectManager.getInstance();
 function connect() {
-  connManager.connect(inputtext.value)
+  connectManager.connect(targetid.value)
 }
-function send() {
-  const msg = new TestMessage(sendtext.value, inputtext.value);
-  P2PMessageSender.sendMessageByPeerId(inputtext.value, msg);
+function find(){
+  let conn = connectManager.findConnectByPeerID(targetid.value);
+  console.log("查找结果：",conn);
+  
 }
 
 </script>
