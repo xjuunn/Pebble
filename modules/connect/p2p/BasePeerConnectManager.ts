@@ -1,20 +1,23 @@
 import type BasePeerClient from "modules/connect/p2p/BasePeerClient";
 import type { DataConnection, MediaConnection, StreamConnection } from "peerjs";
+import BasePeerMessageHandler from "./BasePeerMessageHandler";
 
 /** 基础的Peer连接管理器 */
 export default class BasePeerConnectManager {
     basePeer: BasePeerClient;
+    messageHandler: BasePeerMessageHandler;
     dataConnectList: DataConnection[] = [];
     /**
      * 创建一个Peer连接管理器
      * @param basePeer peer实例
      */
-    constructor(basePeer: BasePeerClient) {
+    constructor(basePeer: BasePeerClient, messageHandler: BasePeerMessageHandler = new BasePeerMessageHandler()) {
         this.basePeer = basePeer;
-        this.initEvents();
+        this.messageHandler = messageHandler;
+        this.initPeerEvents();
     }
 
-    private initEvents() {
+    private initPeerEvents() {
         this.basePeer.on('connection', conn => {
             this.addConnect(conn)
         })
@@ -30,8 +33,14 @@ export default class BasePeerConnectManager {
 
     private addConnect(conn: DataConnection) {
         this.dataConnectList.push(conn);
-        console.log("添加连接对象", this.dataConnectList);
+        console.log("已连接：", conn.peer);
+        this.initConnEvents(conn);
 
+    }
+    private initConnEvents(conn: DataConnection) {
+        conn.on('data', data => {
+            this.messageHandler.handle(data, this);
+        })
     }
 
     /**
